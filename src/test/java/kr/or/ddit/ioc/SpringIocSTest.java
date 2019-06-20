@@ -13,7 +13,7 @@ import kr.or.ddit.board.dao.IBoardDao;
 import kr.or.ddit.board.service.IBoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/kr/or/ddit/ioc/application-ioc-st.xml")
+@ContextConfiguration("classpath:kr/or/ddit/ioc/application-ioc-st.xml")
 public class SpringIocSTest {
 
 	@Resource(name="bDao")

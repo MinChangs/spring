@@ -21,6 +21,7 @@
 		<!-- name은 boardService의 변수명  ref는 다른 bean에 지정되어있는 id(참조하기 위해)  -->
 		<!-- setter injection -->
 		<property name="boardDao" ref="boardDao"></property>
+		<property name="name" value="brown"></property>
 	
 	</bean>
 	

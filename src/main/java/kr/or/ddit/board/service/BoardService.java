@@ -6,7 +6,18 @@ public class BoardService implements IBoardService{
 	
 	private IBoardDao boardDao;
 	private IBoardService boardService;
+	private String name;
 	
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	public BoardService() {
 	}
