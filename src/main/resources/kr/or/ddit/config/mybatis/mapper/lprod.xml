@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lprod">
+
+
+	
+	<select id="lprodPagingList" resultType="lprodVo" parameterType="pageVo">
+		<![CDATA[
+		SELECT * FROM
+		(SELECT a.*, rownum rn
+		FROM
+		(SELECT a.* 
+		FROM LPROD a 
+		ORDER by a.lprod_id) a)
+		where rn>=(#{page}-1)*#{pageSize}+1  and rn<= (#{page}*#{pageSize})
+	]]>
+	</select>
+	
+		<!-- Lprod 전체수 조회 -->
+	<select id="lprodCnt" resultType="int">
+		SELECT COUNT(*) FROM LPROD
+	</select>
+	
+	
+	<select id="lprodList" resultType="lprodVo">
+		select * from LPROD
+	</select>
+	
+	
+</mapper>
