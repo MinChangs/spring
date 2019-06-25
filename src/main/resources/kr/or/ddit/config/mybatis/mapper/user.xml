@@ -39,7 +39,7 @@
 	<!-- 사용자 페이지 리스트 조회 -->
 	<!-- CDATA방식 -->
 	<!-- pageVo int page, int pageSize -->
-	<!-- <select id="userPagingList" parameterType="pageVo" resultType="userVo">
+	<select id="userPagingList" parameterType="pageVo" resultType="userVo">
 	<![CDATA[
 		SELECT * FROM
 		(SELECT a.*, rownum rn
@@ -49,7 +49,7 @@
 		ORDER by a.USERID) a)
 		where rn>=(#{page}-1)*#{pageSize}+1  and rn<= (#{page}*#{pageSize})
 	]]>
-	</select> -->
+	</select>
 	
 	<!-- 사용자 전체수 조회 -->
 	<select id="usersCnt" resultType="int">
@@ -60,22 +60,23 @@
 	
 	
 	
-<!-- 	<select id="lprodPagingList" resultType="lprodVo" parameterType="pageVo"> -->
-<!-- 		<![CDATA[ -->
-<!-- 		SELECT * FROM -->
-<!-- 		(SELECT a.*, rownum rn -->
-<!-- 		FROM -->
-<!-- 		(SELECT a.*  -->
-<!-- 		FROM LPROD a  -->
-<!-- 		ORDER by a.lprod_id) a) -->
-<!-- 		where rn>=(#{page}-1)*#{pageSize}+1  and rn<= (#{page}*#{pageSize}) -->
-<!-- 	]]> -->
-<!-- 	</select> -->
+	<select id="lprodPagingList" resultType="lprodVo" parameterType="pageVo">
+		<![CDATA[
+		SELECT * FROM
+		(SELECT a.*, rownum rn
+		FROM
+		(SELECT a.* 
+		FROM LPROD a 
+		ORDER by a.lprod_id) a)
+		where rn>=(#{page}-1)*#{pageSize}+1  and rn<= (#{page}*#{pageSize})
+	]]>
+	</select>
+	 
 	
 	<insert id="insertUser" parameterType="userVo">
 	
 	INSERT INTO USERS 
-	VALUES(#{userId},#{name},#{alias},#{pass},#{addr1},#{addr2},#{zipcd},#{birth},#{path, jdbcType=VARCHAR},#{filename, jdbcType=VARCHAR})
+	VALUES(#{userId},#{name},#{alias},#{pass},#{addr1},#{addr2},#{zipcd},#{birth},#{path, jdbcType=VARCHAR},#{filename,   jdbcType=VARCHAR})
 	
 	</insert>
 	

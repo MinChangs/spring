@@ -20,4 +20,10 @@
 		<property name="suffix" value=".jsp"/> <!-- 접미 -->
 	</bean>	
 	
+	
+	<!-- multipart resolver id는 multipartResolver로 고정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSizePerFile" value="3145728"/>
+		<property name="maxUploadSize" value="15728640"/>
+	</bean>
 </beans>
