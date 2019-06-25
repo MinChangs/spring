@@ -11,10 +11,11 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.testenv.LogicTestEnv;
 import kr.or.ddit.user.model.UserVo;
-
 
 public class UserDaoTest extends LogicTestEnv{
 
@@ -71,6 +72,26 @@ public class UserDaoTest extends LogicTestEnv{
 		
 		//data삭제 
 		userDao.deleteUser(userVo.getUserId());
+		
+	}
+	
+	/**
+	* Method : getUserTest
+	* 작성자 : PC24
+	* 변경이력 :
+	* Method 설명 : 사용자 정보 테스트
+	*/
+	@Test
+	public void getUserTest() {
+		/***Given***/
+		String userId="brown";
+
+		/***When***/
+		UserVo userVo = userDao.getUser(userId);
+
+		/***Then***/
+		assertEquals("브라운", userVo.getName());
+		assertEquals("곰", userVo.getAlias());
 		
 	}
 

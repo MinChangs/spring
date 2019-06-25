@@ -40,4 +40,9 @@ public class UserService implements IUserService {
 		return userdao.deleteUser(userId);
 	}
 
+	@Override
+	public UserVo getUser(String userId) {
+		return userdao.getUser(userId);
+	}
+
 }

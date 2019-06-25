@@ -13,6 +13,7 @@
 		 expression 속성에는 어노테이션 클래스를 넣어준다-->
 	<context:component-scan base-package="kr.or.ddit">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+		<context:exclude-filter type="annotation" expression="org.aspectj.lang.annotation.Controller"/>
 	</context:component-scan>
 	
 	<aop:aspectj-autoproxy/>

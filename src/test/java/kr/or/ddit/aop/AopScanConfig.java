@@ -8,7 +8,7 @@ import org.springframework.context.annotation.FilterType;
 
 //<context:annotation-config/>역할을 @Configuration에서 담당
 @Configuration
-@ComponentScan(basePackages = {"kr.or.ddit"},
+@ComponentScan(basePackages = {"kr.or.ddit.board"},
 	includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Aspect.class))
 @EnableAspectJAutoProxy
 public class AopScanConfig {

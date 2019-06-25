@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.testenv.LogicTestEnv;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AopScanConfig.class})
@@ -17,7 +18,6 @@ public class AopScanJavaConfigTest {
 	@Resource(name = "boardService")
 	private IBoardService boardService;
 	
-
 
 	@Test
 	public void aopBeforeTest() {
