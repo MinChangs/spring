@@ -16,7 +16,7 @@ public interface IUserDao {
 	* @return
 	* Method 설명 : 전체 사용자 조회
 	*/
-	List<UserVo> useList();
+	List<UserVo> userList();
 	
 	
 	/**

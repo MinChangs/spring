@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 	*/
 	@Override
 	public List<UserVo> userList() {
-		return userdao.useList();
+		return userdao.userList();
 	}
 
 	

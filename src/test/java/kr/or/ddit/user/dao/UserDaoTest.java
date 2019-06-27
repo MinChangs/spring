@@ -34,7 +34,7 @@ public class UserDaoTest extends LogicTestEnv{
 		
 
 		/***When***/
-		List<UserVo> userList = userDao.useList();
+		List<UserVo> userList = userDao.userList();
 		/***Then***/
 		assertNotNull(userList);
 		assertTrue(userList.size()>100);

@@ -23,7 +23,7 @@ public class UserDao implements IUserDao {
 	* Method 설명 : 사용자 전체 리스트 조회
 	*/
 	@Override
-	public List<UserVo> useList() {
+	public List<UserVo> userList() {
 		return sqlSession.selectList("user.userList");
 	}
 

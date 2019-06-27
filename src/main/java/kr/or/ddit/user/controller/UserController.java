@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -12,11 +13,13 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.model.UserVoValidator;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.util.PartUtil;
 @RequestMapping("/user")
@@ -48,6 +52,25 @@ public class UserController {
 		
 		model.addAttribute("userList",userService.userList());
 		return"user/userList";
+	}
+	
+	@RequestMapping("/userListExcel")
+	public String userListExcel(Model model, String filename) {
+		List<String> header =new ArrayList<String>();
+		
+		List<UserVo> userList= userService.userList();
+		header.add("userId");
+		header.add("name");
+		header.add("alias");
+		header.add("addr1");
+		header.add("addr2");
+		header.add("zipcd");
+		header.add("birth");
+		model.addAttribute("header", header);
+		model.addAttribute("data", userList);
+		model.addAttribute("filename", filename);
+		
+		return "userExcelView";
 	}
 	
 	
@@ -87,6 +110,25 @@ public class UserController {
 		return "user/user";
 	}
 	
+	
+	/**
+	* Method : userJson
+	* 작성자 : PC24
+	* 변경이력 :
+	* @param userId
+	* @param model
+	* @return
+	* Method 설명 : 사용자 정보, json응답 
+	*/
+	@RequestMapping("/userJson")
+	public String userJson(String userId, Model model) {
+		UserVo userVo = userService.getUser(userId);
+		model.addAttribute("userInfo", userVo);
+		
+		return "jsonView";
+	}
+	
+	
 	/**
 	* Method : userForm
 	* 작성자 : PC24
@@ -113,11 +155,13 @@ public class UserController {
 	* @return
 	* Method 설명 : 사용자 등록처리
 	*/
-	@RequestMapping(path = "/form", method=RequestMethod.POST)
-	public String userForm(UserVo userVo, String userId ,
+//	@RequestMapping(path = "/form", method=RequestMethod.POST)
+	public String userForm(UserVo userVo, BindingResult result, String userId ,
 						   MultipartFile profile, Model model, RedirectAttributes redirectAttributes) {
-		logger.debug("userForm profile");
 		
+		new UserVoValidator().validate(userVo, result);
+		if(result.hasErrors())
+			return "user/userForm";
 		//UserVo dbUser =userService.getUser(userVo.getUserId()); --> 이것으로도 사용가능
 		UserVo dbUser =userService.getUser(userId);
 		String viewName= "";
@@ -145,7 +189,7 @@ public class UserController {
 				viewName ="redirect:/user/pagingList";
 			}
 		}else {
-			redirectAttributes.addFlashAttribute("msg", "이미 존재하는 사용자입니다");			
+			model.addAttribute("msg", "이미 존재하는 사용자입니다.");	
 			viewName = userForm();
 		}
 		return viewName;
@@ -161,6 +205,7 @@ public class UserController {
 	* @throws IOException
 	* Method 설명 : 사용자 사진 응답 생성
 	*/
+	/*
 	@RequestMapping("/profile")
 	public void profile(String userId, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		UserVo userVo = userService.getUser(userId);
@@ -184,6 +229,14 @@ public class UserController {
 
 		fis.close();
 		sos.close();
+	}*/
+	@RequestMapping("/profile")
+	public String profile(String userId, Model model) throws IOException {
+		//기존에 있던 로직을 별도의 View 클래스로 빼서 처리
+		UserVo userVo = userService.getUser(userId);
+		model.addAttribute("userVo",userVo);
+
+		return "profileView";
 	}
 	
 	
@@ -242,6 +295,61 @@ public class UserController {
 	      }
 	   }
 		
+	
+	
+
+	/**
+	* Method : userForm
+	* 작성자 : PC24
+	* 변경이력 :
+	* @param userVo
+	* @param userId
+	* @param profile
+	* @param model
+	* @return
+	* Method 설명 : 사용자 등록처리
+	*/
+	@RequestMapping(path = "/form", method=RequestMethod.POST)
+	public String userFormJsr(@Valid UserVo userVo, BindingResult result, String userId ,
+						   MultipartFile profile, Model model, RedirectAttributes redirectAttributes) {
+		
+		if(result.hasErrors())
+			return "user/userForm";
+		//UserVo dbUser =userService.getUser(userVo.getUserId()); --> 이것으로도 사용가능
+
+		UserVo dbUser =userService.getUser(userId);
+		String viewName= "";
+		if(dbUser==null){
+			if(profile.getSize()>0) {
+				String fileName = profile.getOriginalFilename();
+				String ext= PartUtil.getExt(fileName);
+				String uploadPath = PartUtil.getUploadPath();
+				String filePath = uploadPath+File.separator+UUID.randomUUID()+ ext;
+				
+				userVo.setPath(filePath);
+				userVo.setFilename(fileName);
+				
+				try {
+					profile.transferTo(new File(filePath));
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			int insertCnt=userService.insertUser(userVo);
+			
+			if(insertCnt == 1) {
+				redirectAttributes.addFlashAttribute("msg", "등록되었습니다");			
+				viewName ="redirect:/user/pagingList";
+			}
+		}else {
+			model.addAttribute("msg", "이미 존재하는 사용자입니다.");	
+			viewName = userForm();
+		}
+		return viewName;
+	}
+	
+
 
 
 

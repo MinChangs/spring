@@ -38,7 +38,21 @@ $(document).ready(function() {
 		$('#userId').val(userId);
 		//#frm을 이용하여 submit();
 		$("#frm").submit();
+		
+		
+		
 	});	
+	
+	
+	$("#exceldown").on("click", function() {
+		filename = $('#filename').val();
+		if(filename ==""){
+			$('#filename').val('userList');
+		}
+		$("#excelfrm").submit();
+		$('#filename').val('');
+	});	
+	
 	
 });
 </script>
@@ -84,7 +98,9 @@ $(document).ready(function() {
 						
 						
 
-						<a href="${cp}/user/form" class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${cp}/user/form" class="btn btn-default pull-right">사용자 등록</a><br>
+						
+						
 
 						<!--  사용자수 : 105건
 						 	  페이지네이션 : 11건 -->
@@ -125,7 +141,13 @@ $(document).ready(function() {
 								</c:choose>
 
 							</ul>
+							
 						</div>
+						
+						<form action="${cp}/user/userListExcel" method="get" id="excelfrm">
+							<input type="text" id="filename" name="filename" size="45" placeholder="저장할 파일명을 입력하세요(미입력시:userList.xlsx)">
+							<input id="exceldown" type="button" class="btn btn-default" value="다운로드" >
+						</form>
 					</div>
 				</div>
 			</div>
