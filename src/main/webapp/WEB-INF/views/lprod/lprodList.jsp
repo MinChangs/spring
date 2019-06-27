@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.user.model.LprodVo"%>
+<%@page import="kr.or.ddit.lprod.model.LprodVo"%>
 <%@page import="kr.or.ddit.paging.model.PageVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,7 +19,7 @@
 <title>LPROD 리스트</title>
 
 <!-- css, js -->
-<%@include file="/WEB-INF/views/common/basicLib.jsp" %>
+<%@include file="/WEB-INF/views/common/basicLib.jsp"%>
 </head>
 
 <body>
@@ -70,7 +70,7 @@
 									<li class="prev disabled"><span>«</span></li>
 								</c:when>
 								<c:otherwise>
-									<li class="prev"><a href="${cp}/lprodPagingList?page=${LpageVo.page-1}&pageSize=${LpageVo.pageSize}">«</a></li>
+									<li class="prev"><a href="${cp}/lprod/pagingList?page=${LpageVo.page-1}&pageSize=${LpageVo.pageSize}">«</a></li>
 								</c:otherwise>
 							</c:choose>
 							
@@ -80,7 +80,7 @@
 										<li class="active"><span>${i}</span></li>
 									</c:when>
 									<c:otherwise>
-									<li><a href="${cp}/lprodPagingList?page=${i}&pageSize=${LpageVo.pageSize}">${i}</a></li>
+									<li><a href="${cp}/lprod/pagingList?page=${i}&pageSize=${LpageVo.pageSize}">${i}</a></li>
 										
 									</c:otherwise>
 								</c:choose>
@@ -92,12 +92,9 @@
 									<li class="next disabled"><span>»</span></li>
 								</c:when>
 								<c:otherwise>
-									<li class="next"><a href="${cp}/lprodPagingList?page=${LpageVo.page+1}&pageSize=${LpageVo.pageSize}">»</a></li>
+									<li class="next"><a href="${cp}/lprod/pagingList?page=${LpageVo.page+1}&pageSize=${LpageVo.pageSize}">»</a></li>
 								</c:otherwise>
 							</c:choose>
-							
-	
-					
 							</ul>
 						</div>
 					</div>

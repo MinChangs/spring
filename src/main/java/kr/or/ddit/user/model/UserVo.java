@@ -2,6 +2,8 @@ package kr.or.ddit.user.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UserVo {
 	private String name;
 	private String userId;
@@ -11,6 +13,7 @@ public class UserVo {
 	private String addr1;
 	private String addr2;
 	private String zipcd;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	private String path;
 	private String filename;

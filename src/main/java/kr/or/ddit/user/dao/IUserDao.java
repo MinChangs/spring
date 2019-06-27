@@ -106,5 +106,7 @@ public interface IUserDao {
 	* Method 설명 : 사용자 비밀번호 암호화적용
 	*/
 	int updateUserEncryptPass(SqlSessionTemplate sqlSession, UserVo userVo);
+	
+	
 }
 

@@ -159,4 +159,10 @@ public class UserService implements IUserService {
 		return updateCntSum;
 	}
 
+
+	@Override
+	public int updateUser(UserVo userVo) {
+		return userdao.updateUser(userVo);
+	}
+
 }

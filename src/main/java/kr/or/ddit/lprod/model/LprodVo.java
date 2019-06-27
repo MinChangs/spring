@@ -1,4 +1,4 @@
-package kr.or.ddit.user.model;
+package kr.or.ddit.lprod.model;
 
 public class LprodVo {
 	

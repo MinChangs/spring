@@ -6,11 +6,11 @@
 	<ul class="nav nav-sidebar">
 		<li class="active"><a href="#">Main <span class="sr-only">(current)</span></a></li>
 		<li class="active"><a
-			href="<%=request.getContextPath()%>/userList">사용자리스트</a></li>
+			href="<%=request.getContextPath()%>/user/list">사용자리스트</a></li>
 		<li class="active"><a
-			href="<%=request.getContextPath()%>/userPagingList">사용자 페이징 리스트</a></li>
+			href="<%=request.getContextPath()%>/user/pagingList">사용자 페이징 리스트</a></li>
 		<li class="active"><a
-			href="<%=request.getContextPath()%>/lprodPagingList">lprod 페이징 리스트</a></li>
+			href="<%=request.getContextPath()%>/lprod/pagingList">lprod 페이징 리스트</a></li>
 			
 	</ul>
 </div>

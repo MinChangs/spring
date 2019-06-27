@@ -44,12 +44,12 @@ $(document).ready(function() {
 				<div class="row">
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 상세</h2>
-						<form class="form-horizontal" role="form" action="${cp}/userModify" method="get">
+						<form class="form-horizontal" role="form" action="${cp}/user/modify" method="get">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 								<div class="col-sm-10">
-									<img src="${cp}/profile?userId=${userInfo.userId}">
+									<img src="${cp}/user/profile?userId=${userInfo.userId}">
 								</div>
 							</div>
 		
@@ -125,44 +125,3 @@ $(document).ready(function() {
 
 
 
-
-<%-- 
-
-
-<% 
-								PageVo pageVo= (PageVo)request.getAttribute("pageVo");
-								int paginationSize = (Integer)request.getAttribute("paginationSize");
-								if(pageVo.getPage()==1){%>
-									
-								<li class="prev disabled"><span>«</span></li>
-								<% }else{%>
-								<li class="prev"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%= pageVo.getPageSize()%>">«</a></li>
-								<%	
-								}
-								
-								
-								
-								//내가 현재 몇번째 페이지에 있는가?
-// 								PageVo pageVo= (PageVo)request.getAttribute("pageVo");
-								for(int i=1; i<=paginationSize; i++){
-									if(i == pageVo.getPage()){
-									%>
-										<li class="active"><span><%=i %></span></li>
-									<% }else{%>
-										
-									<li><a href="${cp}/userPagingList?page=<%=i %>&pageSize=<%= pageVo.getPageSize()%>"><%=i%></a></li>
-		
-									<% }
-								}
-								
-								if(pageVo.getPage()==paginationSize){%>
-								
-								<li class="next disabled"><span>»</span></li>
-								<% }else{%>
-								<li class="next"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%= pageVo.getPageSize()%>">»</a></li>
-								<%	
-								}
-								
-							%>
-							
---%>
