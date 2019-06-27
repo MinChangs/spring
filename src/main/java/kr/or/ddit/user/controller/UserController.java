@@ -233,9 +233,9 @@ public class UserController {
 	      if(updateCnt > 0) {
 	    	  redirectAttributes.addFlashAttribute("msg", "수정에 성공했습니다.");
 //	          return "redirect:/user/user?userId=" + userVo.getUserId();
-	          //뒤에 직접 파라미터값을 붙이지 않고 redirectAttributes.addAttribute 값을 보낼수 있다
+	          //리다이렉트로 넘길때 뒤에 직접 파라미터값을 붙이지 않고 redirectAttributes.addAttribute 값을 보낼수 있다
 	    	  redirectAttributes.addAttribute("userId", userVo.getUserId());
-	    	  return "redirect:/user/user;
+	    	  return "redirect:/user/user";
 	      }else {
 	    	  redirectAttributes.addFlashAttribute("msg", "수정에 실패했습니다.");
 	         return userModify(userVo.getUserId(), model);
