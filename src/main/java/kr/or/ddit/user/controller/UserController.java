@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.paging.model.PageVo;
@@ -114,7 +115,7 @@ public class UserController {
 	*/
 	@RequestMapping(path = "/form", method=RequestMethod.POST)
 	public String userForm(UserVo userVo, String userId ,
-						   MultipartFile profile, Model model) {
+						   MultipartFile profile, Model model, RedirectAttributes redirectAttributes) {
 		logger.debug("userForm profile");
 		
 		//UserVo dbUser =userService.getUser(userVo.getUserId()); --> 이것으로도 사용가능
@@ -140,11 +141,12 @@ public class UserController {
 			int insertCnt=userService.insertUser(userVo);
 			
 			if(insertCnt == 1) {
+				redirectAttributes.addFlashAttribute("msg", "등록되었습니다");			
 				viewName ="redirect:/user/pagingList";
 			}
 		}else {
+			redirectAttributes.addFlashAttribute("msg", "이미 존재하는 사용자입니다");			
 			viewName = userForm();
-			model.addAttribute("msg", "이미 존재하는 사용자입니다");			
 		}
 		return viewName;
 	}
@@ -201,7 +203,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "/modify", method = RequestMethod.POST)
-	public String userModify(UserVo userVo, Model model, MultipartFile profile, HttpServletResponse response) {
+	public String userModify(UserVo userVo, Model model, MultipartFile profile, 
+							 HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		
 		
 		
@@ -228,10 +231,13 @@ public class UserController {
 	      int updateCnt = userService.updateUser(userVo);
 	      logger.debug("updateCnt : {} ",updateCnt);
 	      if(updateCnt > 0) {
-//	    	  model.addAttribute("msg", "수정에 성공했습니다.");
-	         return "redirect:/user/user?userId=" + userVo.getUserId();
+	    	  redirectAttributes.addFlashAttribute("msg", "수정에 성공했습니다.");
+//	          return "redirect:/user/user?userId=" + userVo.getUserId();
+	          //뒤에 직접 파라미터값을 붙이지 않고 redirectAttributes.addAttribute 값을 보낼수 있다
+	    	  redirectAttributes.addAttribute("userId", userVo.getUserId());
+	    	  return "redirect:/user/user;
 	      }else {
-	    	  model.addAttribute("msg", "수정에 실패했습니다.");
+	    	  redirectAttributes.addFlashAttribute("msg", "수정에 실패했습니다.");
 	         return userModify(userVo.getUserId(), model);
 	      }
 	   }

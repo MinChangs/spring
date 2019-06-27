@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.or.ddit.main.model.MainVo;
 import kr.or.ddit.user.model.UserVo;
 
 /*
@@ -139,5 +141,43 @@ public class MainController {
 		logger.debug("Accept : {} ", accept);
 		return "main";
 	}
+	
+	@RequestMapping("/main/view")
+	public String view() {
+		return "view";
+	}
+	
+	@RequestMapping("/main/process")
+	public String process(HttpServletRequest request, String[] userId, 
+						// List<>타입의 경우 @RequestParam적용
+						  @RequestParam("userId")List<String> userIdList,
+						  String[] name,
+						   MainVo mainVo) {
+		
+		String[] userIdArr=request.getParameterValues("userId");
+		String userIdParameter = request.getParameter("userId");
+		logger.debug("userIdParameter : {}", userIdParameter);		
+		for(String u : userIdArr) 
+			logger.debug("userId : {} ",u);
+		
+		logger.debug("request.getParameterValues(\"userId\")");
+		for(String u : userId) 
+			logger.debug("String[] userId : {} ",u);
+		
+		logger.debug("userIdList");
+		for(String u : userIdList) 
+			logger.debug("List<String> userIdList: {} ",u);
+		
+//		logger.debug("MainVo");
+//		for(String u : mainVo) 
+			logger.debug("mainVo.getUserId(): {} ",mainVo);
+		
+		
+		
+		return "main";
+	}
+	
+
+	
 
 }
