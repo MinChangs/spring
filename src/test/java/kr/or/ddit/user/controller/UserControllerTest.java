@@ -73,7 +73,7 @@ public class UserControllerTest extends ControllerTestEnv {
 		
 		
 		/***Then***/
-		assertEquals("user/userPagingList", viewName);
+		assertEquals("tiles.userPagingList", viewName);
 		assertEquals(10, userList.size());
 		assertEquals(11, paginationSize);
 		assertEquals(2, pageVo.getPage());
@@ -105,7 +105,7 @@ public class UserControllerTest extends ControllerTestEnv {
 		
 		
 		/***Then***/
-		assertEquals("user/userPagingList", viewName);
+		assertEquals("tiles.userPagingList", viewName);
 		assertEquals(10, userList.size());
 		assertEquals(11, paginationSize);
 		
