@@ -11,6 +11,8 @@
 			href="<%=request.getContextPath()%>/user/pagingList">사용자 페이징 리스트</a></li>
 		<li class="active"><a
 			href="<%=request.getContextPath()%>/lprod/pagingList">lprod 페이징 리스트</a></li>
+		<li class="active"><a
+			href="<%=request.getContextPath()%>/user/pagingListAjaxView">사용자 페이징 리스트(ajax)</a></li>
 			
 	</ul>
 </div>

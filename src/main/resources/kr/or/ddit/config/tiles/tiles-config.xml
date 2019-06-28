@@ -13,7 +13,20 @@
 	</definition>
 	
 	<definition name="tiles.userPagingList" extends="layout">
-		<put-attribute name="body" value="/WEB-INF/views/user/userPagingList.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/user/userPagingList.jsp"/>
+	</definition>
+	
+	<!-- locale view -->
+	<definition name="tiles.locale" extends="layout">
+		<put-attribute name="body" value="/WEB-INF/views/locale/locale.jsp"/>
+	</definition>
+	
+	<!-- aj -->
+	<definition name="tiles.ajaxView" extends="layout">
+		<put-attribute name="body" value="/WEB-INF/views/ajax/ajaxView.jsp"/>
+	</definition>
+	<definition name="tiles.pagingListAjaxView" extends="layout">
+		<put-attribute name="body" value="/WEB-INF/views/user/userPagingListAjax.jsp"/>
 	</definition>
 
 </tiles-definitions>

@@ -93,6 +93,45 @@ public class UserController {
 		return "tiles.userPagingList"; 
 	}
 	
+	
+	
+	
+	/**
+	* Method : pagingListAjax
+	* 작성자 : PC24
+	* 변경이력 :
+	* @param pageVo
+	* @param model
+	* @return
+	* Method 설명 : 사용자 페이징 리스트 ajax처리 
+	*/
+	@RequestMapping("/pagingListAjax")
+	public String pagingListAjax(PageVo pageVo, Model model) {
+		
+		logger.debug("pageVo : {} ", pageVo);
+		model.addAttribute("data",userService.userPagingList(pageVo));
+
+		
+		return "jsonView"; 
+	}
+	
+	
+	@RequestMapping("/pagingListAjaxHtml")
+	public String pagingListAjaxHtml(PageVo pageVo, Model model) {
+		
+		logger.debug("pageVo : {} ", pageVo);
+		model.addAttribute("pageVo",pageVo);
+		model.addAttribute("data",userService.userPagingList(pageVo));
+
+		
+		return "user/userpagingListAjaxHtml"; 
+	}
+	
+	@RequestMapping("/pagingListAjaxView")
+	public String pagingListAjaxView() {
+		return "tiles.pagingListAjaxView";
+	}
+	
 	/**
 	* Method : user
 	* 작성자 : PC24
