@@ -3,9 +3,11 @@ package kr.or.ddit.user.model;
 import java.util.Date;
 
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@XmlRootElement
 public class UserVo {
 	
 	@Size(min=4)
@@ -128,11 +130,12 @@ public class UserVo {
 		this.alias = alias;
 	}
 
+
 	@Override
 	public String toString() {
-		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
-				+ alias + "]";
+		return "UserVo [userId=" + userId + ", name=" + name + ", alias=" + alias + ", pass=" + pass + "]";
 	}
 
+	
 
 }
