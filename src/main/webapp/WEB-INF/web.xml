@@ -44,11 +44,24 @@
 	<!-- logic관련된 spring bean ioc -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value><!-- logic : service, dao, datasource, transaction  -->
-					 classpath:kr/or/ddit/config/spring/root-context.xml
-					 classpath:kr/or/ddit/config/spring/application-datasource.xml
-					 classpath:kr/or/ddit/config/spring/application-transaction.xml
+		<param-value>
+<!-- logic : service, dao, datasource, transaction  -->
+<!-- 					 classpath:kr/or/ddit/config/spring/root-context.xml -->
+<!-- 					 classpath:kr/or/ddit/config/spring/application-datasource.xml -->
+<!-- 					 classpath:kr/or/ddit/config/spring/application-transaction.xml -->
+		kr.or.ddit.config.spring.RootContext
+		kr.or.ddit.config.spring.ApplicationDatasource
+		kr.or.ddit.config.spring.ApplicationTransaction
 		</param-value>
+		
+		
+	</context-param>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+		</param-value>
+			
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
@@ -64,9 +77,20 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:kr/or/ddit/config/spring/application-context.xml
+			<param-value>
+<!-- 				classpath:kr/or/ddit/config/spring/application-context.xml -->
 			<!-- 인터셉트 추가 -->
-						 classpath:kr/or/ddit/config/spring/application-interceptor.xml			
+<!-- 				classpath:kr/or/ddit/config/spring/application-interceptor.xml-->
+					kr.or.ddit.config.spring.ApplicationContext
+					kr.or.ddit.config.spring.ApplicationInterceptor
+			</param-value>
+		</init-param>
+		
+		<init-param>
+			
+		<param-name>contextClass</param-name>
+			<param-value>
+				org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

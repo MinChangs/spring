@@ -18,12 +18,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:kr/or/ddit/config/spring/application-context.xml",
-					   "classpath:kr/or/ddit/config/spring/root-context.xml",
-					   "classpath:kr/or/ddit/config/spring/application-datasource-dev.xml",
-	   				   "classpath:kr/or/ddit/config/spring/application-transaction.xml"})
+import kr.or.ddit.config.spring.ApplicationContext;
+import kr.or.ddit.config.spring.ApplicationDatasource_dev;
+import kr.or.ddit.config.spring.ApplicationTransaction;
+import kr.or.ddit.config.spring.RootContext;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration({"classpath:kr/or/ddit/config/spring/application-context.xml",
+//					   "classpath:kr/or/ddit/config/spring/root-context.xml",
+//					   "classpath:kr/or/ddit/config/spring/application-datasource-dev.xml",
+//	   				   "classpath:kr/or/ddit/config/spring/application-transaction.xml"})
+@ContextConfiguration(classes = {ApplicationContext.class, RootContext.class, 
+								 ApplicationDatasource_dev.class, ApplicationTransaction.class})
 @WebAppConfiguration
 public class ControllerTestEnv {
 	@Autowired

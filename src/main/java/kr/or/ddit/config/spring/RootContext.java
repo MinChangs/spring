@@ -1,11 +1,11 @@
 package kr.or.ddit.config.spring;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.context.annotation.ComponentScan.Filter;
 
 //@service,@Repository 두 어노테이션을 대상으로 스캔
 @Configuration

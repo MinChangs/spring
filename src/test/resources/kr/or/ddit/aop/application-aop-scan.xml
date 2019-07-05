@@ -11,7 +11,7 @@
 	<!-- Default값으로 @Controller, @Service, @Repository, @Component 4가지 어노테이션이 붙은 클래스를 스프링 빈으로 등록 
 		 다른 어노테이션을 추가하기 위해서는 <context:include-filter>를 안에 추가해야한다.
 		 expression 속성에는 어노테이션 클래스를 넣어준다-->
-	<context:component-scan base-package="kr.or.ddit">
+	<context:component-scan base-package="kr.or.ddit.board, kr.or.ddit.aop">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
 		<context:exclude-filter type="annotation" expression="org.aspectj.lang.annotation.Controller"/>
 	</context:component-scan>
