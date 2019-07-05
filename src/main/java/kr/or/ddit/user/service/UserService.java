@@ -8,12 +8,14 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.model.UserVo;
 
+@Transactional
 @Service
 public class UserService implements IUserService {
 	@Resource(name="userDao")

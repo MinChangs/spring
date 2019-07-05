@@ -2,17 +2,33 @@ SELECT
     *
 FROM not_exists_in_prd_db;
 
+-- ATTACHMENT 테이블 초기화
+delete ATTACHMENT;
+
+-- REPLY 테이블 초기화
+delete REPLY;
+
+-- REPLY 테이블 초기화
+delete POST;
+
+-- db 테이블 초기화
+delete board;
+
+
+
+
 --users 테이블 초기화
 delete users;
 
 --prod 테이블 초기화
 delete prod;
 
-delete lprod;
 
+delete lprod;
 
 --buyer 테이블 초기화
 delete buyer;
+
 
 Insert into PC24_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('adm','제임스','닝겐','2240e98c15f4815e5f2e24e9ebad6fa816893139b55219ba9d869f8824ac72e5','서울 강남구 논현로123길 6','aaaa','06112',to_date('19/06/09','RR/MM/DD'),'d:\upload\2019\06\31fcc2e5-387d-4f86-b687-e22ac504244c.png','a0aa7b0c-11d1-4602-bafb-261f2342900f.png');
 Insert into PC24_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('user40','사용자40','사용자별명40','99c430be1960d7f8283bfb2a62312ddd13cd2a4c196dff6b70be584c2ee2cc',null,null,null,null,null,null);
