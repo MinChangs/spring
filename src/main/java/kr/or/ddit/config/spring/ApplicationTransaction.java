@@ -19,6 +19,6 @@ public class ApplicationTransaction {
 	public DataSourceTransactionManager transactionManager() {
 		DataSourceTransactionManager dstm = new DataSourceTransactionManager();
 		dstm.setDataSource(datasource);
-		return null;
+		return dstm;
 	}
 }

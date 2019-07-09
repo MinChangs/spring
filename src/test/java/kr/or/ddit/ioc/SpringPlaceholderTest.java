@@ -33,7 +33,7 @@ public class SpringPlaceholderTest {
 
 		/***Then***/
 		assertEquals("oracle.jdbc.driver.OracleDriver", dbinfo.getDriver());
-		assertEquals("jdbc:oracle:thin:@192.168.0.99:1521:xe", dbinfo.getUrl());
+		assertEquals("jdbc:oracle:thin:@192.168.0.123:1521:xe", dbinfo.getUrl());
 		assertEquals("pc24", dbinfo.getUsername());
 		assertEquals("java", dbinfo.getPassword());
 		
