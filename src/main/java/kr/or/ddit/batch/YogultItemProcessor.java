@@ -45,9 +45,12 @@ public class YogultItemProcessor implements ItemProcessor<CycleVo, List<DailyVo>
 		SimpleDateFormat day= new SimpleDateFormat("");
 		
 		List<DailyVo> dailyVoList = new ArrayList<DailyVo>();
+		
+		//cal : 1-31 순차적으로 증가 et_dt클때까지 
 		while (ed_dt.getTime() >= cal.getTimeInMillis()) {
+			//요일이 같을때만 dailVo로 생성
+			//ex : cycleVo.getDay() : 2월 --> 20190701
 			if (cal.get(Calendar.DAY_OF_WEEK)== cycleVo.getDay()) {
-				
 				DailyVo vo = new DailyVo();
 				vo.setCid(cycleVo.getCid());
 				vo.setPid(cycleVo.getPid());
