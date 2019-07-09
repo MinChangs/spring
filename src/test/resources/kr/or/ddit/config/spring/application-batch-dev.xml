@@ -9,7 +9,6 @@
 	<!-- Junit 용 테스트 클래스 -->
 	<bean class="org.springframework.batch.test.JobLauncherTestUtils"/>
 	
-<!-- 	<context:property-placeholder location="classpath:kr/or/ddit/config/mybatis/db_dev.properties"/> -->
 	
 	<batch:job-repository
 		id="jobRepository"
